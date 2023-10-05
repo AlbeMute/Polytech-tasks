@@ -16,16 +16,17 @@ print("@") if m == 1 or n == 1 else print("Error") if m <= 0 or n <= 0 else prin
 n = int(input("Введите предел: "))
 if n <= 100:
     a = sum([a**3 for a in range(1, n+1)])
-    print(a)
+    print("Предел: ",a)
 else:
     print("Error")
 
 
 #2. Выведите на экран таблицу умножения чисел от одного до девяти.
-for a in range(1, 10):
-    for b in range(1, 10):
-        c = a*b
-        print(f"{a} * {b} = {c}")
-    print("\n")
+for i in range(1, 10):
+    for j in range(1, 10):
+        print(i * j, end='\t')  
+    print()
+
+
 
 
