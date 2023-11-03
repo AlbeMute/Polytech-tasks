@@ -1,3 +1,4 @@
+
 #2
 '''
 Выберите любую папку на своем компьютере, имеющую вложенные директории. 
@@ -6,19 +7,22 @@
 
 import os
 
-def print_docs(dir):
-    for root, dirs, files in os.walk(dir):
+def print_docs(root_dir):
+    for root, dirs, files in os.walk(root_dir):
         for file in files:
             print(os.path.join(root, file))
 
-print_docs('/home/albemute/Polytech-tasks')
+current_dir = os.getcwd()
+print_docs(current_dir)
+
 
 
 #3
 '''
-Документ article.txt содержит следующий текст: "....."
+Документ "..." содержит следующий текст: "....."
 Требуется реализовать функцию `longest_words(file)`, которая выводит слово, имеющее максимальную длину (или список слов, если таковых несколько).  
 '''
+import os
 
 def longest_words(file):
     with open(file, 'r') as f:
@@ -41,8 +45,7 @@ def longest_words(file):
     
     return words
 
-result = longest_words("article.txt")
-print(result)
+print(longest_words(input("Введите путь к файлу: ")))
 
 #4
 '''
