@@ -20,20 +20,24 @@ def tankvol(h, d, vt):
         theta = 2 * math.acos((radius - h) / radius)
         segment_area = 0.5 * radius**2 * (theta - math.sin(theta))
         liquid_volume = vt * segment_area / (math.pi * radius**2)
-
     elif h <= (2 * radius):
         theta = 2 * math.acos((h - radius) / radius)
         segment_area = 0.5 * radius**2 * (theta - math.sin(theta))
         cylinder_area = math.pi * radius**2
-        liquid_volume = cylinder_area * (h - radius) / (2 * radius) + vt * segment_area / cylinder_area
-
+        cylinder_volume = cylinder_area * (h - radius)
+        liquid_volume = cylinder_volume + vt * segment_area / (math.pi * radius**2)
     else:
         theta = 2 * math.acos((radius - (h - 2 * radius)) / radius)
         segment_area = 0.5 * radius**2 * (theta - math.sin(theta))
         liquid_volume = vt - (math.pi * radius**2 * (3 * radius - h) + vt * segment_area / (math.pi * radius**2))
-
-    return int(liquid_volume)
+    
+    return int(round(liquid_volume))
 
 print(tankvol(40, 120, 3500))  # Ожидаемый вывод: 1021
 print(tankvol(60, 120, 3500))  # Ожидаемый вывод: 1750
 print(tankvol(80, 120, 3500))  # Ожидаемый вывод: 2478
+
+
+
+
+
