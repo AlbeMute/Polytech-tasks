@@ -103,7 +103,7 @@ plt.rcParams['figure.autolayout'] = True
 
 def function(alpha, beta, color, linestyle='-'):
     x = np.linspace(-10, 10, 999)  
-    y = (x**alpha) / (x**beta)
+    y = y = (x ** beta + alpha ** beta) / (x**beta)
 
     plt.plot(x, y, label=f"\u03b1={alpha}, \u03b2={beta}", color=color, linestyle=linestyle)
 
