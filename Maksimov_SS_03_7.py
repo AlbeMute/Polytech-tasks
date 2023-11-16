@@ -10,7 +10,34 @@ For example, a "4 digit" number includes zero-padded, smaller numbers, such as 0
 For clarification, the bouncy numbers between 100 and 125 are: 101, 102, 103, 104, 105, 106, 107, 108, 109, 120, and 121.
 '''
 
+def factorial(n):
+    if n == 0 or n == 1:
+        return 1
+    return n * factorial(n - 1)
 
+def combination(n, k):
+    return factorial(n) // (factorial(k) * factorial(n - k))
+
+def count_bouncy_numbers(N):
+    def count_increasing_or_decreasing(is_increasing):
+        total = 0
+        start = 0 if is_increasing else 1
+        for i in range(start, 10):
+            total += combination(9 + N - i - 1, N - 1)
+        return total
+
+    total_numbers = 10**N
+    increasing_numbers = count_increasing_or_decreasing(True)
+    decreasing_numbers = count_increasing_or_decreasing(False)
+    both_types = 10
+
+    bouncy_numbers = total_numbers - (increasing_numbers + decreasing_numbers - both_types)
+
+    return bouncy_numbers
+
+print(count_bouncy_numbers(2)) # Expected output: 0 (as numbers under 100 are non-bouncy)
+print(count_bouncy_numbers(3)) # Example: count of bouncy numbers with 3 digits
+print(count_bouncy_numbers(4)) # Example: count of bouncy numbers with 4 digits
 
 
 
