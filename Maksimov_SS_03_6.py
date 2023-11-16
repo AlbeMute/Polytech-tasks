@@ -10,22 +10,28 @@ import math
 
 def format_num(n):
     units = ['', 'K', 'M', 'B', 'T']
-    prefixes = ['', 'a', 'b', 'c', 'd'] + [chr(97 + i) for i in range(22)]  # '', 'a'-'d', 'aa'-'zz'
-  
-    if abs(n) < 1e-6:  # Check if the number is too small
+    overflow_units = 'abcdefghijklmnopqrstuvwxyz'
+    sign = '-' if n < 0 else ''
+    n = abs(n)
+
+    if n < 1:
         return '0'
 
-    sign = '-' if n < 0 else ''
+    magnitude = int(math.floor(math.log10(n) / 3))
+    if magnitude >= len(units):
+        unit1 = overflow_units[(magnitude - len(units)) // 26]
+        unit2 = overflow_units[(magnitude - len(units)) % 26]
+        unit = unit1 + unit2
+    else:
+        unit = units[magnitude]
 
-    n = abs(n)
-    exponent = int(math.log10(n) // 3)
-    prefix = prefixes[exponent // 2]
-    unit = units[exponent]
+    n = n / (1000 ** magnitude)
+    n = math.floor(n * 100) / 100
 
-    formatted_num = sign + f'{n / (1000 ** exponent):.2f}'.rstrip('0').rstrip('.')
-    formatted_num = formatted_num if formatted_num != '-0' else '0'
+    formatted_num = f'{n}'.rstrip('0').rstrip('.') if '.' in f'{n}' else f'{n}'
+    formatted_num = sign + formatted_num + unit
 
-    return formatted_num + prefix + unit
+    return formatted_num
 
 # Examples
 print(format_num(0))  # Expected output: 0
