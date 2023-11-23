@@ -1,3 +1,4 @@
+'''
 #1
 import pandas as pd
 
@@ -81,9 +82,14 @@ s = pd.Series([10, 20, 15, 30, 25])
 diff = s.diff(2)
 
 print(diff)
+'''
+import pandas as pd
 
+n = 2
+series = pd.Series([1, 5, 7, 8, 12, 15, 17])
+difference = series.diff(periods=n)
 
-
+print(difference)
 
 
 

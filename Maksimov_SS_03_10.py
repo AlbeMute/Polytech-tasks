@@ -50,7 +50,7 @@ plt.xlabel('Уникальные значения')
 plt.xticks(rotation = 0)
 plt.ylabel('Частота')
 plt.title('Гистограмма частоты уникальных значений')
-#plt.show()
+plt.show()
 
 #4
 '''
@@ -73,12 +73,11 @@ print(horizontal_concat)
 '''
 Найти разность между объектом Series и смещением объекта Series на n
 '''
-
 import pandas as pd
 
-s = pd.Series([1, 2, 3, 4, 5])
+n = 2
 
-n = int(input('Введите n: '))
+s = pd.Series([1, 2, 5, 9, 13, 15])
 s_shifted = s.shift(n)
 
 print(s - s_shifted)
