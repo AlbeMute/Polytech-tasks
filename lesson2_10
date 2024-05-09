@@ -1,0 +1,209 @@
+'''Реализовать классовую структуру вещей в комнате (на выбор): холодильник, шкаф, тумбочка...
+Реализовать методы "положить" и "взять":
+
+Реализовать единожды методы "положить" и "взять", однако применять в различных классах, 
+если объект съедобный (холодильник), или письменная принадлежность (тумбочка) или одежда (шкаф).
+
+ножницы
+книга
+карандаш
+яблоко'''
+
+goods = {
+    'food': ['apple', 'meat', 'beer'],
+    'accessories': ['pencil', 'scissors', 'book'],
+    'clothes': ['pants','jacket' ]
+         }
+
+class Storage:
+    def __init__(self, name):
+        self.name = name
+        self.items = []
+    
+    def put(self, item):
+        self.items.append(item)
+        print(f"Положили '{item}' в {self.__class__.__name__}.")
+
+    def check_item(self, item):
+        return False
+    
+    def take(self, item):
+        if item in self.items:
+            self.items.remove(item)
+            print(f"Взяли '{item}' из {self.__class__.__name__}.")
+        else:
+            print(f"'{item}' не найдено в {self.__class__.__name__}.")
+
+class Wardrobe(Storage):
+    def __iter__ (self):
+        return goods['clothes']
+    
+class Refrigerator(Storage):
+    def __iter__ (self):
+        return iter([item for item in self.items if item in goods['food']])
+
+class Nightstand(Storage):
+    def __iter__ (self):
+        return goods['accessories']
+
+fridge = Refrigerator('fridge')
+fridge.put('apple')
+
+
+
+
+
+
+'''class Item:
+    def __init__(self, name, category):
+        self.name = name
+        self.category = category
+
+class Storage:
+    def __init__(self, name):
+        self.name = name
+        self.items = []
+    
+    def put(self, item):
+        if self.check_item(item):
+            self.items.append(item)
+            print(f"{item.name} помещен в {self.name}.")
+        else:
+            print(f"{item.name} не может быть помещен в {self.name}.")
+    
+    def check_item(self, item):
+        # Этот метод должен быть переопределен в подклассах
+        return False
+    
+    def take(self, item_name):
+        for item in self.items:
+            if item.name == item_name:
+                self.items.remove(item)
+                print(f"{item_name} взят из {self.name}.")
+                return item
+        print(f"{item_name} не найден в {self.name}.")
+
+    def __iter__(self):
+        # Возвращает итератор по хранимым вещам
+        return iter(self.items)
+
+class Wardrobe(Storage):
+    def check_item(self, item):
+        return item.category == 'clothes'
+    
+class Refrigerator(Storage):
+    def check_item(self, item):
+        return item.category == 'food'
+
+class Nightstand(Storage):
+    def check_item(self, item):
+        return item.category == 'accessories'
+
+# Создаем предметы
+apple = Item('apple', 'food')
+pencil = Item('pencil', 'accessories')
+pants = Item('pants', 'clothes')
+
+# Создаем хранилища
+fridge = Refrigerator('Fridge')
+wardrobe = Wardrobe('Wardrobe')
+nightstand = Nightstand('Nightstand')
+
+# Пример использования
+fridge.put(apple)  # Должно успешно поместить яблоко в холодильник
+wardrobe.put(pants)  # Должно успешно поместить штаны в шкаф'''
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# class Item:
+#     def __init__(self, name):
+#         self.name = name
+
+#     def __str__(self):
+#         return self.name
+
+# class Scissors(Item):
+#     pass
+
+# class Book(Item):
+#     pass
+
+# class Pencil(Item):
+#     pass
+
+# class Apple(Item):
+#     pass
+
+# class Furniture:
+#     def __init__(self, name):
+#         self.name = name
+#         self.items = []
+
+#     def put(self, item):
+#         self.items.append(item)
+#         print(f"{item} was put in the {self.name}.")
+
+#     def take(self, item_name):
+#         for item in self.items:
+#             if item.name == item_name:
+#                 self.items.remove(item)
+#                 print(f"{item_name} was taken from the {self.name}.")
+#                 return item
+#         print(f"{item_name} not found in the {self.name}.")
+
+#     def __str__(self):
+#         return f"{self.name} contains: {[str(item) for item in self.items]}"
+
+# class Refrigerator(Furniture):
+#     pass
+
+# class Wardrobe(Furniture):
+#     pass
+
+# class Nightstand(Furniture):
+#     pass
+
+# # Пример использования:
+# fridge = Refrigerator("Kitchen Refrigerator")
+# wardrobe = Wardrobe("Bedroom Wardrobe")
+# nightstand = Nightstand("Bedside Nightstand")
+
+# fridge.put(Apple("Green Apple"))
+# wardrobe.put(Book("The Great Gatsby"))
+# nightstand.put(Scissors("Craft Scissors"))
+# nightstand.put(Pencil("HB Pencil"))
+
+# print(fridge)
+# print(wardrobe)
+# print(nightstand)
+
+# nightstand.take("Craft Scissors")
+# print(nightstand)
+
+
+
+
+
+
+
+
+
+
